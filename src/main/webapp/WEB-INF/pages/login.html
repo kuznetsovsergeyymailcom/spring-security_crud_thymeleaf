@@ -2,51 +2,44 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
-    <style>
-        .field {
-            clear: both;
-            text-align: right;
-            line-height: 25px;
-        }
-        .submit {
-            margin-top: 5px;
-        }
-        label {
-            float: left;
-            padding-right: 10px;
-        }
-        .main {
-            width: 253px;
-            margin: 0 auto;
-        }
-        .warning {
-            color: red;
-            background-color: khaki;
-        }
-    </style>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 <body>
-<div align="center">
-    <div class="main">
+<div align="center" class="container" style="margin-top:50px;">
+    <div class="main div-center w-50">
         <div th:if="${isNotValid}">
-            <p class="warning">Invalid login or password!</p>
+            <p class="alert alert-warning" role="alert">Invalid login or password!</p>
         </div>
 
-        <form action="#" th:action="@{/processing-url}" method="post">
-            <div class="field">
-                <label for="uName">Username:</label>
-                <input type="text" id="uName" name="login" />
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Please sign in</h3>
+                        </div>
+                        <div class="panel-body">
+                            <form accept-charset="UTF-8" role="form" action="#" th:action="@{/processing-url}" method="post">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <input class="form-control" placeholder="User name" name="login" type="text" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" placeholder="Password" name="password" type="password" value="" required>
+                                    </div>
+
+                                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Sign in">
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="field">
-                <label for="uPass">Password:</label>
-                <input type="text" id="uPass" name="password" />
-            </div>
-            <div class="submit">
-                <input type="submit" align="center" value="login"/>
-            </div>
-        </form>
+        </div>
 
     </div>
 
