@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+<script src="js/bootstrap.min.js"></script>
+<p>
+    <h1>
+        Hello <th:block th:text="${user.login}"/>
+    <button class="btn btn-success">Button</button>
+    </h1>
+</p>
+
+</body>
+</html>

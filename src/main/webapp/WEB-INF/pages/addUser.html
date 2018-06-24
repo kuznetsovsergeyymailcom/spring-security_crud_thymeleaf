@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <title>Add user</title>
+    <style>
+        .field {
+            clear: both;
+            text-align: right;
+            line-height: 25px;
+        }
+
+        .submit {
+            margin-top: 5px;
+        }
+
+        label {
+            float: left;
+            padding-right: 10px;
+        }
+
+        .main {
+            width: 253px;
+            margin: 0 auto;
+        }
+
+        .warning {
+            color: red;
+            background-color: khaki;
+        }
+    </style>
+</head>
+<body>
+<div align="center">
+    <div class="main">
+        <div th:if="${isNotValid}">
+            <p class="warning">Invalid name or password!</p>
+        </div>
+
+        <form th:action="@{/admin/addUser}" method="post">
+            <div class="field">
+                <label for="uName">Username:</label>
+                <input type="text" id="uName" th:name="login"/>
+            </div>
+            <div class="field">
+                <label for="uPass">Password:</label>
+                <input type="text" id="uPass" th:name="password"/>
+            </div>
+            <div class="field">
+                <label for="uRole">Role:</label>
+                <select style="width: 173px" th:name="role" id="uRole">
+                    <option value="user">user</option>
+                    <option value="admin">admin</option>
+                    <option value="admin, user">admin, user</option>
+                </select>
+            </div>
+            <div class="submit">
+                <input type="submit" align="center" value="Submit"/>
+            </div>
+
+        </form>
+    </div>
+</div>
+</body>
+</html>
