@@ -29,9 +29,7 @@
 <body>
 <div align="center">
     <div class="main">
-        <div th:if="${isNotValid}">
-            <p class="warning">Invalid login or password!</p>
-        </div>
+
         <form th:action="@{/admin/edit}" method="post">
             <input type="hidden" th:name="id" th:value="${user.id}">
 

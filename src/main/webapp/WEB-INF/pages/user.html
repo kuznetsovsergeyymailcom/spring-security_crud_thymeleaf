@@ -3,19 +3,60 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>User</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <title>Admin page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <style>
+        body{background:#f9f9f9;}
+        #wrapper{padding:90px 15px;}
+        .navbar-expand-lg .navbar-nav.side-nav{flex-direction: column;}
+        .card{margin-bottom: 15px; border-radius:0; box-shadow: 0 3px 5px rgba(0,0,0,.1); }
+        .header-top{box-shadow: 0 3px 5px rgba(0,0,0,.1)}
+        @media(min-width:992px) {
+            #wrapper{margin-left: 200px;padding: 90px 15px 15px;}
+            .navbar-nav.side-nav{background: #585f66;box-shadow: 2px 1px 2px rgba(0,0,0,.1);position:fixed;top:56px;flex-direction: column!important;left:0;width:200px;overflow-y:auto;bottom:0;overflow-x:hidden;padding-bottom:40px}
+        }
+
+    </style>
 </head>
 <body>
 
-<p>
-    <h1>
-        Hello <th:block th:text="${user.login}"/>
-    <button class="btn btn-success">Button</button>
-    </h1>
-</p>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div id="wrapper">
+    <nav class="navbar header-top fixed-top navbar-expand-lg  navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Project name</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav side-nav bg-white">
+
+                <li class="nav-item">
+                    <a class="nav-link text-primary" href="/admin">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-primary" href="/user">User</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-md-auto d-md-flex">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Log out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <p><h2>User Panel</h2></p>
+        <h1>Hello <th:block th:text="${user.login}"/></h1>
+    </div>
+
+</div>
+</div>
 
 </body>
 </html>

@@ -34,6 +34,7 @@ public class TestDataInit {
 		User admin = new User();
 		admin.setLogin("admin");
 		admin.setPassword("admin");
+		admin.setEmail("admin@email.com");
 		Set<Role> adminRoles = new HashSet<>();
 		adminRoles.add(roleAdmin);
 		adminRoles.add(roleUser);
@@ -44,6 +45,7 @@ public class TestDataInit {
 		User user = new User();
 		user.setLogin("user");
 		user.setPassword("user");
+		user.setEmail("user@email.com");
 		Set<Role> userRoles = new HashSet<>();
 		userRoles.add(roleUser);
 		user.setRoles(userRoles);

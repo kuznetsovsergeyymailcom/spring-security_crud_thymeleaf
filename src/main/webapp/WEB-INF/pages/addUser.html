@@ -1,65 +1,150 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<html>
+<html lang="en">
 <head>
-    <title>Add user</title>
+    <meta charset="UTF-8">
+    <title>Admin page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <style>
-        .field {
-            clear: both;
-            text-align: right;
-            line-height: 25px;
+        body{background:#f9f9f9;}
+        #wrapper{padding:90px 15px;}
+        .navbar-expand-lg .navbar-nav.side-nav{flex-direction: column;}
+        .card{margin-bottom: 15px; border-radius:0; box-shadow: 0 3px 5px rgba(0,0,0,.1); }
+        .header-top{box-shadow: 0 3px 5px rgba(0,0,0,.1)}
+        @media(min-width:992px) {
+            #wrapper{margin-left: 200px;padding: 90px 15px 15px;}
+            .navbar-nav.side-nav{background: #585f66;box-shadow: 2px 1px 2px rgba(0,0,0,.1);position:fixed;top:56px;flex-direction: column!important;left:0;width:200px;overflow-y:auto;bottom:0;overflow-x:hidden;padding-bottom:40px}
         }
 
-        .submit {
-            margin-top: 5px;
-        }
-
-        label {
-            float: left;
-            padding-right: 10px;
-        }
-
-        .main {
-            width: 253px;
-            margin: 0 auto;
-        }
-
-        .warning {
-            color: red;
-            background-color: khaki;
-        }
     </style>
 </head>
 <body>
-<div align="center">
-    <div class="main">
-        <div th:if="${isNotValid}">
-            <p class="warning">Invalid name or password!</p>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div id="wrapper">
+    <nav class="navbar header-top fixed-top navbar-expand-lg  navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Project name</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav side-nav bg-white">
+
+                <li class="nav-item">
+                    <a class="nav-link text-primary" href="/admin">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-primary" href="/user">User</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-md-auto d-md-flex">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Log out</a>
+                </li>
+            </ul>
         </div>
+    </nav>
+    <div class="container-fluid">
+        <p><h2>Admin Panel</h2></p>
+        <nav class="nav">
+            <a class="nav-link active" href="/admin">Users table</a>
+            <a class="nav-link" href="#">Add new User</a>
+        </nav>
 
-        <form th:action="@{/admin/addUser}" method="post">
-            <div class="field">
-                <label for="uName">Username:</label>
-                <input type="text" id="uName" th:name="login"/>
+
+        <form class="form-horizontal" role="form" method="POST" th:action="@{/admin/addUser}">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <h2>Register New User</h2>
+                    <hr>
+                </div>
             </div>
-            <div class="field">
-                <label for="uPass">Password:</label>
-                <input type="text" id="uPass" th:name="password"/>
+            <div class="row">
+                <div class="col-md-3 field-label-responsive">
+                    <label for="name">Login</label>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                            <input type="text" th:name="login" class="form-control" id="name"
+                                   placeholder="Your name" required autofocus>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            <div class="field">
-                <label for="uRole">Role:</label>
-                <select style="width: 173px" th:name="role" id="uRole">
-                    <option value="user">user</option>
-                    <option value="admin">admin</option>
-                    <option value="admin, user">admin, user</option>
-                </select>
+            <div class="row">
+                <div class="col-md-3 field-label-responsive">
+                    <label for="email">E-Mail Address</label>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                            <input type="text" th:name="email" class="form-control" id="email"
+                                   placeholder="you@example.com" required>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            <div class="submit">
-                <input type="submit" align="center" value="Submit"/>
+            <div class="row">
+                <div class="col-md-3 field-label-responsive">
+                    <label for="password">Password</label>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group has-danger">
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
+                            <input type="password" th:name="password" class="form-control" id="password"
+                                   placeholder="Password" required>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-3 field-label-responsive">
+                    <label for="password">Role:</label>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group has-danger">
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
+
+                            <select class="form-control" th:name="role" id="uRole">
+                                <option value="user">user</option>
+                                <option value="admin">admin</option>
+                                <option value="admin, user">admin, user</option>
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-user-plus"></i> Add new user</button>
+                </div>
+            </div>
         </form>
+
+
     </div>
+
 </div>
+</div>
+
 </body>
 </html>

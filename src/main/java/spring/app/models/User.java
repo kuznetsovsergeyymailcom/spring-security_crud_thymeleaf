@@ -18,6 +18,8 @@ public class User implements UserDetails {
 	@Column(name = "login",  nullable = false, unique = true)
 	private String login;
 
+	@Column(name = "email",  nullable = false, unique = true)
+	private String email;
 
 	@Column(name = "password", length = 30, nullable = false)
 	private String password;
@@ -36,19 +38,22 @@ public class User implements UserDetails {
 	public User() {
 	}
 
-	public User(String login, String password, boolean enabled) {
-		this.login = login;
-		this.password = password;
-		this.enabled = enabled;
-	}
-
-	public User(Long id, String login, String password, boolean enabled) {
+	public User(Long id, String login, String email, String password, Boolean enabled) {
 		this.id = id;
 		this.login = login;
+		this.email = email;
 		this.password = password;
+		this.roles = roles;
 		this.enabled = enabled;
 	}
 
+	public User(String login, String email, String password, Boolean enabled) {
+		this.login = login;
+		this.email = email;
+		this.password = password;
+		this.roles = roles;
+		this.enabled = enabled;
+	}
 
 	public Long getId() {
 		return id;
@@ -103,6 +108,14 @@ public class User implements UserDetails {
 
 	public Set<Role> getRoles() {
 		return roles;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public void setRoles(Set<Role> roles) {

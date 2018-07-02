@@ -49,7 +49,9 @@ public class MainController {
 	@RequestMapping(value = {"/admin"}, method = RequestMethod.GET)
 	public ModelAndView adminPage() {
 		List<User> listUsers = userService.getAllUsers();
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		ModelAndView model = new ModelAndView("admin");
+		model.addObject("currentUser", user);
 		model.addObject("users", listUsers);
 		return model;
 	}
@@ -65,14 +67,14 @@ public class MainController {
 	}
 
 	@RequestMapping(value = {"/admin/addUser"}, method = RequestMethod.POST)
-	public String addUser(@RequestParam("login") String login, @RequestParam("password") String password,
-						  @RequestParam("role") String role) {
+	public String addUser(@RequestParam("login") String login, @RequestParam("email") String email,
+						  @RequestParam("password") String password, @RequestParam("role") String role) {
 		if (login.isEmpty() || password.isEmpty()) {
 			CodeMessenger.setCode(ErrorCode.ADD);
 			return "redirect:/admin/addUser";
 		}
 
-		User user = new User(login, password, true);
+		User user = new User(login, email, password, true);
 		user.setRoles(getRoles(role));
 
 		userService.addUser(user);
@@ -93,13 +95,14 @@ public class MainController {
 
 	@RequestMapping(value = {"/admin/edit"}, method = RequestMethod.POST)
 	public String editUser(@RequestParam("id") Long id, @RequestParam("login") String login,
-						   @RequestParam("password") String password, @RequestParam("role") String role) {
+						   @RequestParam("email") String email, @RequestParam("password") String password,
+						   @RequestParam("role") String role) {
 		if (login.isEmpty() || password.isEmpty()) {
 			CodeMessenger.setCode(ErrorCode.EDIT);
 			return "redirect:/admin/edit/" + id;
 		}
 
-		User user = new User(id, login, password, true);
+		User user = new User(id, login, email, password, true);
 		user.setRoles(getRoles(role));
 
 		userService.updateUser(user);

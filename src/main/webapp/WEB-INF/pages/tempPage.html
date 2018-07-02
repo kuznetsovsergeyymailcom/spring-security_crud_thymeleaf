@@ -1,48 +1,73 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+            integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"
+            integrity="sha384-u/bQvRA/1bobcXlcEYpsEdFVK/vJs3+T+nXLsBYJthmdBuavHvAW6UsmqO2Gd/F9" crossorigin="anonymous"></script>
 </head>
+
 <body>
+<div class="container-fluid">
+    <div class="row">
+        <div align="center">
+            <table class="table table-bordred table-striped ml-3">
+                <section class="text-info ">All users</section>
+                <thead class="thead-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Password</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr scope="row" th:each="user : ${users}">
+                    <td th:text="${user.id}">${user.id}</td>
+                    <td th:text="${user.login}">${user.login}</td>
+                    <td th:text="${user.password}">${user.password}</td>
+                    <td th:text="${user.email}">${user.email}</td>
+                    <td th:text="${user.roles}">${user.roles}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sampleModal">
+                            Launch demo modal
+                        </button>
+                        <!--<a th:href="${'/admin/edit/' + user.id}" class="btn btn-primary">Edit</a>-->
+                        <a th:href="${'/admin/delete/' + user.id}" class="btn btn-primary">Delete</a>
+                    </td>
 
-<div class="container">
-    <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-        <div class="panel panel-info" >
+                </tr>
+                </tbody>
 
-            <div style="padding-top:30px" class="panel-body" >
-
-                <div style="display:none" id="login-alert" class="col-sm-12 col-md-10 col-md-offset-1"></div>
-
-                <form id="loginform" class="form-horizontal" role="form">
-                    <h2 align="left">Please sign in</h2>
-
-                    <div style="margin-bottom: 25px" class="input-group">
-                        <input id="login-username" type="text" class="form-control" name="username"
-                               placeholder="Enter username">
+            </table>
+        </div>
+        <button type="button" data-toggle="modal" class="btn btn-dark" data-target="#sampleModal">
+            Show modal
+        </button>
+        <div class="fade modal" id="sampleModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">This is a modal</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
-
-                    <div style="margin-bottom: 25px" class="input-group">
-                        <input id="login-password" type="password" class="form-control" name="password"
-                               placeholder="Password">
+                    <div class="modal-body">
+                        Some text
                     </div>
-
-                    <div style="margin-top:10px" class="form-group">
-
-                        <div class="col-sm-12 controls">
-                            <a id="btn-login" href="#" class="btn btn-success w-100">Sign in</a>
-
-                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Exit</button>
                     </div>
-
-                </form>
+                </div>
             </div>
         </div>
     </div>
-
-</div>
-
 </body>
 </html>
