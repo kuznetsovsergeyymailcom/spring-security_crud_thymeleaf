@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/resources/js/scripts.js"></script>
+    <link type="text/css" rel="stylesheet" href="/resources/css/styles.css">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+            integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"
+            integrity="sha384-u/bQvRA/1bobcXlcEYpsEdFVK/vJs3+T+nXLsBYJthmdBuavHvAW6UsmqO2Gd/F9" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <div th:fragment="edit">
+        <div class="fade modal" id="userEdit">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-body">
+                        <div class="col-md-12">
+                            <span class="anchor" id="formUpdate"></span>
+                            <hr class="mb-5">
+
+                            <!-- form card register -->
+                            <div class="card card-outline-secondary w-100">
+                                <div class="card-header">
+                                    <h3 class="mb-0">Edit user</h3>
+                                </div>
+                                <div class="card-body">
+                                    <form class="form" role="form" autocomplete="off" th:action="@{/admin/edit}" method="post">
+                                        <div class="form-group">
+                                            <label for="modal_id">ID</label>
+                                            <input type="text" class="form-control"
+                                                   id="modal_id" th:name="id" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="modal_login">Name</label>
+                                            <input type="text" class="form-control"
+                                                   id="modal_login" th:name="login" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="modal_email">Email</label>
+                                            <input type="email" class="form-control"
+                                                   id="modal_email" th:name="email" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="modal_password">Password</label>
+                                            <input type="password" class="form-control"
+                                                   id="modal_password" th:name="password" required>
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                                <label for="modal_password">Role</label>
+                                                <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
+
+                                                <select class="form-control" th:name="role" id="uRole">
+                                                    <option value="user">user</option>
+                                                    <option value="admin">admin</option>
+                                                    <option value="admin, user">admin, user</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-success btn-lg float-right">Edit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
