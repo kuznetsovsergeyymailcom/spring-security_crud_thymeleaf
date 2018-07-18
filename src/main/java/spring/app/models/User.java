@@ -1,5 +1,6 @@
 package spring.app.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -29,6 +30,7 @@ public class User implements UserDetails {
 	@JoinTable(name = "permissions",
 			joinColumns = {@JoinColumn(name = "user_id")},
 			inverseJoinColumns = {@JoinColumn(name = "role_id")})
+//	@JsonIgnore
 	private Set<Role> roles;
 
 	@Column(name = "enabled", nullable = false)

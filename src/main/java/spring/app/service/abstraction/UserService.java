@@ -1,10 +1,8 @@
 package spring.app.service.abstraction;
 
-import spring.app.models.Role;
 import spring.app.models.User;
 
 import java.util.List;
-import java.util.Set;
 
 
 public interface UserService {

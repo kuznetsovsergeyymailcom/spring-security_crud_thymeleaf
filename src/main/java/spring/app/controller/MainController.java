@@ -1,10 +1,12 @@
 package spring.app.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import spring.app.models.Role;
@@ -68,7 +70,7 @@ public class MainController {
 
 	@RequestMapping(value = {"/admin/addUser"}, method = RequestMethod.POST)
 	public String addUser(@RequestParam("login") String login, @RequestParam("email") String email,
-						  @RequestParam("password") String password, @RequestParam("role") String role) {
+                          @RequestParam("password") String password, @RequestParam("role") String role) {
 		if (login.isEmpty() || password.isEmpty()) {
 			CodeMessenger.setCode(ErrorCode.ADD);
 			return "redirect:/admin/addUser";
@@ -95,8 +97,8 @@ public class MainController {
 
 	@RequestMapping(value = {"/admin/edit"}, method = RequestMethod.POST)
 	public String editUser(@RequestParam("id") Long id, @RequestParam("login") String login,
-						   @RequestParam("email") String email, @RequestParam("password") String password,
-						   @RequestParam("role") String role) {
+                           @RequestParam("email") String email, @RequestParam("password") String password,
+                           @RequestParam("role") String role) {
 		if (login.isEmpty() || password.isEmpty()) {
 			CodeMessenger.setCode(ErrorCode.EDIT);
 			return "redirect:/admin/edit/" + id;

@@ -10,7 +10,7 @@ public class PropertiesReader {
 		String value = null;
 		Properties properties = new Properties();
 		PropertiesReader reader = new PropertiesReader();
-		try(InputStream input = reader.getClass().getClassLoader().getResourceAsStream("properties.properties")){
+		try(InputStream input = reader.getClass().getClassLoader().getResourceAsStream("application.properties")){
 			properties.load(input);
 			value = properties.getProperty(name);
 		} catch (IOException e) {

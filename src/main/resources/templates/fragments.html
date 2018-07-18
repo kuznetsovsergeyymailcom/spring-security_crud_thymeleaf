@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Fragments</title>
+</head>
+<body>
+<div th:fragment="add">
+    <form class="form-horizontal" role="form" method="POST" th:action="@{/admin/addUser}">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <h2>Register New User</h2>
+                <hr/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="name">Login</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                        <input type="text" th:name="login" class="form-control" id="name"
+                               placeholder="Your name" required="true" autofocus="true"/>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="email">E-Mail Address</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                        <input type="text" th:name="email" class="form-control" id="email"
+                               placeholder="you@example.com" required="true"/>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="password">Password</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group has-danger">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
+                        <input type="password" th:name="password" class="form-control" id="password"
+                               placeholder="Password" required="true"/>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="userRole">Role:</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group has-danger">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
+
+                        <select class="form-control" th:name="role" id="userRole">
+                            <option value="user">user</option>
+                            <option value="admin">admin</option>
+                            <option value="admin, user">admin, user</option>
+                        </select>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-user-plus"></i> Add new user</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<div th:fragment="header">
+    <nav class="navbar header-top fixed-top navbar-expand-lg  navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Project name</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav side-nav bg-white">
+
+                <li class="nav-item">
+                    <a class="nav-link text-primary" href="/admin">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-primary" href="/user">User</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-md-auto d-md-flex">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Log out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+</body>
+</html>

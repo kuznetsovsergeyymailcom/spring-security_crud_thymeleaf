@@ -3,12 +3,10 @@ package spring.app.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import spring.app.dao.abstraction.UserDao;
-import spring.app.models.Role;
 import spring.app.models.User;
 import spring.app.service.abstraction.UserService;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
